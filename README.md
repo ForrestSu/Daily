@@ -19,8 +19,7 @@ Attention: Please use it in **Company Network**!(Also you can connect **Company 
 
 ##How To Use
 1. Run `daily.py` , will generate two files named `Daily.txt、Daily.log` in Current directory. (Daily.log record some log when promgram is running.)
-2. Write your Daily note into Daily.txt.  
-![RDM](https://github.com/ForrestSu)  
+2. Write your Daily note into `daily.txt`. [here](#Screenshots)
 3. Run `daily.py` again, your Daily 
 
 ## AutoRun Once Everyday
@@ -28,13 +27,15 @@ Attention: Please use it in **Company Network**!(Also you can connect **Company 
 Use `Task Scheduler`
 >Add `daily.vbs` into Windows scheduled tasks  
 
+![RDM](https://github.com/ForrestSu/Daily/blob/master/png/taskschedule.png)
+
 **Linux**  
 Use `crontab`：run once Monday-Friday  at 17:30  
 >vi /etc/crontab 
 >add `30 17 * * 1-5  python /etc/Daily/daily.py`
 
-## Screenshots
-![RDM](https://github.com/ForrestSu)
+##Screenshots
+![RDM](https://github.com/ForrestSu/Daily/blob/master/png/daily.png)
 
 ##FAQ
 If you have some question, Welcome add issue.
