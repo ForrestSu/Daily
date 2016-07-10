@@ -18,8 +18,8 @@ import RDM
 import random
 
 #type yourself Company Account Information
-USERNAME = 'zhangsan12520'
-PASSWORD = '12345678@A'
+USERNAME = 'sunquan12903'
+PASSWORD = '1dm@enSQ'
 
 ##文件名
 f_logfile = 'daily.log'
