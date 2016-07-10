@@ -25,13 +25,14 @@ import re
 import ssl
 import codecs
 import time
+import random
 
 class OneNote:
     taskid = '' #任务号
     content = 'QDII学习'
     date = time.strftime('%Y-%m-%d',time.localtime(time.time()))  #日期,例如'2016-06-19'
     hour = '9'
-    percent = '80'
+    percent = str(random.randint(60,80))
     #定义构造方法  
     def __init__(self,sTaskid,sContent=content,sDate=date,sHour=hour,sPercent=percent): 
         self.taskid=sTaskid
@@ -176,7 +177,7 @@ class RDMBrowser:
         if(Counts == len(taskid_items)):
             f = codecs.open(dailyfile,'a','utf-8') 
             while(icount < Counts):
-                content="%d\t%s\t%s\n"%(icount,title_items[icount],taskid_items[icount])
+                content="%d\t%s\t%s\r\n"%(icount+1,title_items[icount],taskid_items[icount])
                 f.write(content)
                 icount=icount+1
             f.close()
