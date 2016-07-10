@@ -12,11 +12,11 @@ Attention: Please use it in **Company Network**!(Also you can connect **Company 
 ## Installation
 1. Install [Python 2.7](https://www.python.org/downloads/)+
 2. `git clone  https://github.com/ForrestSu/Daily.git Daily`  
-3. Modify Daily.txt file at Line 18,Like this:  
+3. Modify Daily.txt file at Line 18,Like this:
 ```python  
-#type yourself Company Account Information  
-USERNAME = 'zhangsan12520'  
-PASSWORD = '12345678@A' 
+  #type yourself Company Account Information  
+  USERNAME = 'zhangsan12520'  
+  PASSWORD = '12345678@A' 
 ``` 
 
 ##How To Use
