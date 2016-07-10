@@ -13,9 +13,10 @@ Attention: Please use it in **Company Network**!(Also you can connect **Company 
 1. Install [Python 2.7](https://www.python.org/downloads/)+
 2. `git clone  https://github.com/ForrestSu/Daily.git Daily`  
 3. Modify Daily.txt file at Line 18,Like this:  
-> \#type yourself Company Account Information
-> USERNAME = 'zhangsan12520'
-> PASSWORD = '12345678@A'
+
+> \#type yourself Company Account Information  
+> USERNAME = 'zhangsan12520'  
+> PASSWORD = '12345678@A'  
 
 ##How To Use
 1. Run `daily.py` , will generate two files named `Daily.txt、Daily.log` in Current directory. (Daily.log record some log when promgram is running.)
