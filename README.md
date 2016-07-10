@@ -19,7 +19,7 @@ Attention: Please use it in **Company Network**!(Also you can connect **Company 
 
 ##How To Use
 1. Run `daily.py` , will generate two files named `Daily.txt、Daily.log` in Current directory. (Daily.log record some log when promgram is running.)
-2. Write your Daily note into `daily.txt`. [here](#Screenshots)
+2. Write your Daily note into `daily.txt`. [here](#screenshots)
 3. Run `daily.py` again, your Daily 
 
 ## AutoRun Once Everyday
