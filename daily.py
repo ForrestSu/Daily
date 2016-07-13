@@ -35,28 +35,31 @@ def AutoSubmit():
                 datefmt='%a,%Y-%m-%d %H:%M:%S',
                 filename=NOWDIR+f_logfile,
                 filemode='a')
-    myrdm = RDM.RDMBrowser()
-    if not myrdm.Login(USERNAME,PASSWORD):
-        logging.info('Login Fail !')
-        exit(0) 
-    logging.info('Login Successful.')
-    dailyfile = NOWDIR+f_dailyfile
-    #1 首次使用文件不存在，获取任务列表,然后退出
-    if not os.path.exists(dailyfile):
-        if myrdm.getTaskList(dailyfile):
-            f = codecs.open(dailyfile,'a','utf-8') 
-            f.write(u'##请填写下面的内容,注意：(1)每条填写一行,行内按TAB分隔;\r\n')
-            f.write(u'##(2)每行记录前输入#号表示注释,提交成功后记录前默认加#号;\r\n')
-            f.write(u'##(3)缺省记录Date将会被替换为当天日期。\r\n')
-            f.write(u'日期\t任务序号\t时间\t工作内容\r\n')
-            f.write(u'Date\t\t1\t8\t1.业务学习\r\n')
-            f.write(u'2016-07-04\t1\t5\t1.业务学习\\n2.客户问题排查\r\n')
-            f.write(u'2016-07-04\t1\t4\t1.业务学习\r\n')
-            f.close()
-        logging.info(myrdm.getMsg())
-        exit(0)
-    #2 读取txt并提交数据
-    readTXT(myrdm,logging,dailyfile)
+    try:
+        myrdm = RDM.RDMBrowser()
+        if not myrdm.Login(USERNAME,PASSWORD):
+            logging.info('Login Fail !')
+            exit(0) 
+        logging.info('Login Successful.')
+        dailyfile = NOWDIR+f_dailyfile
+        #1 首次使用文件不存在，获取任务列表,然后退出
+        if not os.path.exists(dailyfile):
+            if myrdm.getTaskList(dailyfile):
+                f = codecs.open(dailyfile,'a','utf-8') 
+                f.write(u'##请填写下面的内容,注意：(1)每条填写一行,行内按TAB分隔;\r\n')
+                f.write(u'##(2)每行记录前输入#号表示注释,提交成功后记录前默认加#号;\r\n')
+                f.write(u'##(3)缺省记录Date将会被替换为当天日期。\r\n')
+                f.write(u'日期\t任务序号\t时间\t工作内容\r\n')
+                f.write(u'Date\t\t1\t8\t1.业务学习\r\n')
+                f.write(u'2016-07-04\t1\t5\t1.业务学习\\n2.客户问题排查\r\n')
+                f.write(u'2016-07-04\t1\t4\t1.业务学习\r\n')
+                f.close()
+            logging.info(myrdm.getMsg())
+            exit(0)
+        #2 读取txt并提交数据
+        readTXT(myrdm,logging,dailyfile)
+    except Exception as e:
+        logging.error(e)
 
 def readTXT(myrdm,log,dailyfile):
     #2 下面开启读取文件dailyfile并提交
