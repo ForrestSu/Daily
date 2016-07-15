@@ -20,14 +20,14 @@ Attention: Please use it in **Company Network**!(Also you can connect **Company 
 ``` 
 
 ##How To Use
-1. Run `daily.py` first, will generate two files named `Daily.txt、Daily.log` in Current directory. (Daily.log record some log when this program is running.)
+1. Run `daily.py` first, will generate two files named `Daily.txt、Daily.log` in Current directory. (`Daily.log` record some log when this program is running.)
 2. Write your Daily note into `daily.txt`. [here](#screenshots)
 3. Run `daily.py` again, your Daily note will be post to PDM.
 
 ## AutoRun Once Everyday
 **Windows**  
 Use `Task Scheduler`
->Add `daily.vbs` into Windows scheduled tasks(**Pay Attention**:First modify the `daily.vbs` file path properly!)  
+>Add `daily.vbs` into Windows scheduled tasks(**Pay Attention**:modify the `daily.vbs` file path!)  
 
 ![RDM](https://github.com/ForrestSu/Daily/blob/master/png/taskschedule.png)
 
@@ -40,4 +40,4 @@ Use `crontab`：run once from Monday to Friday  at 17:30
 ![RDM](https://github.com/ForrestSu/Daily/blob/master/png/daily.png)
 
 ##FAQ
-If you have some question, Welcome add issue.
+If you have some questions, Welcome add issue.
