@@ -1,7 +1,10 @@
 #filter myself file
 daily.log
 daily.txt
+sqoci.py
 README.html
+oci/*
+png/code.png
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

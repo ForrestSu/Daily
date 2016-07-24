@@ -26,6 +26,8 @@ import ssl
 import codecs
 import time
 import random
+import sys,os
+import subprocess 
 
 class OneNote:
     taskid = '' #任务号
@@ -78,6 +80,30 @@ class RDMBrowser:
             pass
         finally:
             return req_urllib.Request(url=url, data=data)
+    def getInput(self,msg,default=0):
+        #sqoci.getverify1(imgpath,'code.png')
+        r=input(msg)
+        if r=='':
+            return default
+        return r
+    def getverifyCode(self):
+        #1 先下载图片
+        request = self.__getRequest('https://hs-cas.hundsun.com/cas/kaptcha.jpg?'+str(random.randint(1,99)))
+        response = req_urllib.urlopen(request)
+        data = response.read()
+        imgpath=sys.path[0]+os.sep+'png'+os.sep
+        file=open(imgpath+'code.png', "wb")
+        file.write(data)
+        file.flush()
+        file.close()
+        if sys.platform.find('darwin') >= 0:
+            subprocess.call(['open', imgpath+'code.png'])
+        elif sys.platform.find('linux') >= 0:
+            subprocess.call(['xdg-open', imgpath+'code.png'])
+        else:
+            os.startfile(imgpath+'code.png')
+        retcode = self.getInput('input a verify:')
+        return str(retcode)
     def __preLogin(self):
         #1 获取登陆主页面
         request = self.__getRequest(url=self.url_login)
@@ -95,10 +121,11 @@ class RDMBrowser:
         matches = re.search(regx, data)
         execution = matches.group(1)
         #print execution
-        return (lt,execution)
+        captcha =self.getverifyCode()
+        return (lt,execution,captcha)
 
     def Login(self,username,password):
-        lt,execution=self.__preLogin()
+        lt,execution,captcha=self.__preLogin()
         #构造header，一般header至少要包含一下两项。这两项是从抓到的包里分析得出的。  
         headers = {'User-Agent' : self.user_agent,  
                    'Referer' : self.url_login}  
@@ -106,6 +133,7 @@ class RDMBrowser:
         postData = {
                     'username':username,### 你的用户名
                     'password':password,    ### 你的密码，密码可能是明文传输也可能是密文，如果是密文需要调用相应的加密算法加密 
+                    'captcha':captcha,        #验证码
                     'lt':lt,               ### 特有数据，不同网站可能不同
                     'execution':execution, ### 特有数据，不同网站可能不同 
                     '_eventId':'submit',   ### 事件类别
@@ -117,8 +145,9 @@ class RDMBrowser:
         text = response.read() 
         #print text 
         if '青铜器RDM' in  text:
+            self.__sMessage='Login Successful! verifycode=['+captcha+']'
             return True
-        self.__sMessage='Login Fail !'
+        self.__sMessage='Login Fail !verifycode=['+captcha+']'
         return False
     #获取任务列表
     def getTaskList(self,dailyfile):
