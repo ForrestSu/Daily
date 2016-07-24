@@ -38,9 +38,9 @@ def AutoSubmit():
     try:
         myrdm = RDM.RDMBrowser()
         if not myrdm.Login(USERNAME,PASSWORD):
-            logging.info('Login Fail !')
+            logging.info(myrdm.getMsg())
             exit(0) 
-        logging.info('Login Successful.')
+        logging.info(myrdm.getMsg())
         dailyfile = NOWDIR+f_dailyfile
         #1 首次使用文件不存在，获取任务列表,然后退出
         if not os.path.exists(dailyfile):
