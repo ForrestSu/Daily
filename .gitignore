@@ -1,5 +1,6 @@
 #filter myself file
 daily.log
+history.txt
 daily.txt
 sqoci.py
 README.html

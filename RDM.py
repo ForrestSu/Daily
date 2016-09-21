@@ -82,7 +82,7 @@ class RDMBrowser:
             return req_urllib.Request(url=url, data=data)
     def getInput(self,msg,default=0):
         #sqoci.getverify1(imgpath,'code.png')
-        r=input(msg)
+        r=raw_input(msg)
         if r=='':
             return default
         return r
