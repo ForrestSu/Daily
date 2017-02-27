@@ -34,16 +34,19 @@ class OneNote:
     content = 'QDII学习'
     date = time.strftime('%Y-%m-%d',time.localtime(time.time()))  #日期,例如'2016-06-19'
     hour = '9'
-    percent = str(random.randint(60,80))
+    percent = '0' 
     #定义构造方法  
-    def __init__(self,sTaskid,sContent=content,sDate=date,sHour=hour,sPercent=percent): 
+    def __init__(self,sTaskid,sContent=content,sDate=date,sHour=hour,sPercent='0'): 
         self.taskid=sTaskid
         self.content=sContent
         self.date=sDate
         self.hour=sHour
-        self.Percent=sPercent
+        #OneNote 变量定义时的初始化,只会初始化一次
+        if sPercent == '0':
+           sPercent=str(random.randint(60,80)) 
+        self.percent=sPercent
     def toString(self):
-        return "Date<%s>Work[%s]%sh" %(self.date,self.content,self.hour)
+        return "Date<%s>Work[%s]%sh,percent=%s" %(self.date,self.content,self.hour,self.percent)
     
 class RDMBrowser:
     user_agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.63 Safari/537.36'
@@ -121,7 +124,8 @@ class RDMBrowser:
         matches = re.search(regx, data)
         execution = matches.group(1)
         #print execution
-        captcha =self.getverifyCode()
+        #captcha =self.getverifyCode()
+        captcha=''
         return (lt,execution,captcha)
 
     def Login(self,username,password):
